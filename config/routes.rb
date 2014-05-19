@@ -30,6 +30,11 @@ Rails.application.routes.draw do
     post 'clients/liste_sources'
     post 'clients/scan_nfc'
     post 'clients/show_produit'
+    post 'clients/add_liste_acheter'
+    post 'clients/show_liste_acheter'
+    post 'clients/add_liste_favorise'
+    post 'clients/show_liste_favorise'
+
   end
 
   namespace :magasin do

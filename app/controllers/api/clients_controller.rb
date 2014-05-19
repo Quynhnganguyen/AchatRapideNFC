@@ -103,7 +103,89 @@ class Api::ClientsController < ApplicationController
     render json: results
   end
 
-  def getProduits
-    # on peut consulter les produit par source/type/prix/
+#liste acheter
+  def add_liste_acheter
+    @client = client
+    @produit = produit
+    if @client and @produit
+      @achat2 = @client.liste_acheter.create(client_id: @client.id, produit_id: @produit.id)
+      # @achat = @produit.liste_acheter.create(liste_acheter_params)
+      @achat2.save
+      if @achat2.save
+         render json: { status: 'Valide', message: "Valide"}
+      else 
+        render json: { status: 'Invalide', message: "Invalide"}
+      end
+    else
+      render json: { status: 'info invalide', message: "info invalide"}
+    end
   end
+
+  def show_liste_acheter
+    @client = client
+    @listes = ListeAcheter.where(client_id: @client.id)
+    results = @listes.map {|p| {
+                  :produit_id => p.produit.id,
+                  :produit_nom => p.produit.nom_produit,
+                  :source => p.produit.source.pays,
+                  :type => p.produit.type_de_produit.type_produit,
+                  :nfc => p.produit.nfc_id,
+                  :magasin => p.produit.magasin.nom_magasin
+                  }}
+    render json: results
+  end # end liste acheter
+
+#liste favorise
+  def add_liste_favorise
+    @client = client
+    @produit = produit
+    if @client and @produit
+      @achat2 = @client.liste_noire.create(client_id: @client.id, produit_id: @produit.id)
+      # @achat = @produit.liste_acheter.create(liste_acheter_params)
+      @achat2.save
+      if @achat2.save
+         render json: { status: 'Valide', message: "Valide"}
+      else 
+        render json: { status: 'Invalide', message: "Invalide"}
+      end
+    else
+      render json: { status: 'info invalide', message: "info invalide"}
+    end
+  end
+
+  def show_liste_favorise
+    @client = client
+    @listes = ListeFavorise.where(client_id: @client.id)
+    results = @listes.map {|p| {
+                  :produit_id => p.produit.id,
+                  :produit_nom => p.produit.nom_produit,
+                  :source => p.produit.source.pays,
+                  :type => p.produit.type_de_produit.type_produit,
+                  :nfc => p.produit.nfc_id,
+                  :magasin => p.produit.magasin.nom_magasin
+                  }}
+    render json: results
+  end #end liste noire
+
+
+  private
+
+  def liste_acheter_params
+    params.require(:liste_acheter).permit(:client_id, :produit_id) if params[:liste_acheter]
+  end
+
+  def client
+    if params[:client_id]
+      id = params[:client_id]
+      Client.find(params[:client_id])
+    end
+  end
+
+  def produit
+    if params[:produit_id]
+      id = params[:produit_id]
+      Produit.find(params[:produit_id])
+    end
+  end
+
 end
