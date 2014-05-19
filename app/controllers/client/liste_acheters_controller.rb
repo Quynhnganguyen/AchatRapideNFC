@@ -21,7 +21,17 @@ class Client::ListeAchetersController < ApplicationController
    		flash[:notice] =  "erroooooo"
     end
   end
+  
+def destroy
+   @client = client
+    @type = @context.type_de_produit.find(params[:id])
+    @type.destroy
 
+    respond_to do |format|
+      format.html { redirect_to context_url(context) }
+      format.json { head :no_content }
+    end
+  end
 
 
 private
