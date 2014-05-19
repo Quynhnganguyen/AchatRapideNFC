@@ -1,5 +1,5 @@
 class Api::ClientsController < ApplicationController
-	def sign_in
+  def sign_in
     @client = Client.where(email: params[:email]).first
     if @client.blank?
       render json: { status: 'Invalid client', message: "Invalid client"}
@@ -82,6 +82,7 @@ class Api::ClientsController < ApplicationController
     results = @produit.map {|p| {
                   :produit_id => p.id,
                   :produit_nom => p.nom_produit, 
+                  :prix => p.prix,
                   :nombre => p.nombre,
                   :source => p.source.pays,
                   :type => p.type_de_produit.type_produit,
@@ -95,6 +96,7 @@ class Api::ClientsController < ApplicationController
     results = @produit.map {|p| {
                   :produit_id => p.id,
                   :produit_nom => p.nom_produit, 
+                  :prix => p.prix,
                   :nombre => p.nombre,
                   :source => p.source.pays,
                   :type => p.type_de_produit.type_produit,
@@ -127,6 +129,7 @@ class Api::ClientsController < ApplicationController
     results = @listes.map {|p| {
                   :produit_id => p.produit.id,
                   :produit_nom => p.produit.nom_produit,
+                  :prix => p.produit.prix,
                   :source => p.produit.source.pays,
                   :type => p.produit.type_de_produit.type_produit,
                   :nfc => p.produit.nfc_id,
@@ -158,6 +161,7 @@ class Api::ClientsController < ApplicationController
     @listes = ListeFavorise.where(client_id: @client.id)
     results = @listes.map {|p| {
                   :produit_id => p.produit.id,
+                  :prix => p.produit.prix,
                   :produit_nom => p.produit.nom_produit,
                   :source => p.produit.source.pays,
                   :type => p.produit.type_de_produit.type_produit,
@@ -190,6 +194,7 @@ class Api::ClientsController < ApplicationController
     @listes = ListeNoire.where(client_id: @client.id)
     results = @listes.map {|p| {
                   :produit_id => p.produit.id,
+                  :prix => p.produit.prix,
                   :produit_nom => p.produit.nom_produit,
                   :source => p.produit.source.pays,
                   :type => p.produit.type_de_produit.type_produit,
