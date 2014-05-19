@@ -168,7 +168,7 @@ class Api::ClientsController < ApplicationController
   end #end liste favorise
 
 #liste noire
-  def add_liste_favorise
+  def add_liste_noire
     @client = client
     @produit = produit
     if @client and @produit
@@ -185,7 +185,7 @@ class Api::ClientsController < ApplicationController
     end
   end
 
-  def show_liste_favorise
+  def show_liste_noire
     @client = client
     @listes = ListeNoire.where(client_id: @client.id)
     results = @listes.map {|p| {
