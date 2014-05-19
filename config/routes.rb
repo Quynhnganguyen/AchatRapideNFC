@@ -8,6 +8,14 @@ Rails.application.routes.draw do
       resources :liste_favorises, only: [:new, :create]
     end
   end
+
+  namespace :client do
+  get 'liste_noires/index'
+  resources :client do 
+      resources :liste_noires, only: [:new, :create]
+    end
+  end
+
   namespace :client do
     get 'magasins/index'
     post 'produits/index'
@@ -34,6 +42,8 @@ Rails.application.routes.draw do
     post 'clients/show_liste_acheter'
     post 'clients/add_liste_favorise'
     post 'clients/show_liste_favorise'
+    post 'clients/add_liste_noire'
+    post 'clients/show_liste_noire'
 
   end
 

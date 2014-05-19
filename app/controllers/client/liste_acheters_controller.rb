@@ -14,7 +14,7 @@ class Client::ListeAchetersController < ApplicationController
     @client = client
     @produit = produit
     @achat2 = @client.liste_acheter.create(client_id: @client.id, produit_id: @produit.id)
- 	@achat2.save
+ 	  @achat2.save
     if @achat2.save
        flash[:notice] =  "produit has been successfully added in liste à acheter."
    else 

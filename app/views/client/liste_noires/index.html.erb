@@ -1,0 +1,28 @@
+
+<h1>Produits in the liste noire of client <%= @client.name %></h1>
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th >Nom</th>
+      <th >Type</th>
+      <th >Source</th>
+      <th >Prix</th>
+      <th >Detail</th>
+  
+    </tr>
+  </thead>
+  <tbody>
+    <% @listes.each do |e| %>
+      <tr>
+        <td><%= e.produit.nom_produit %></td>
+        <td><%= e.produit.type_de_produit.type_produit %> </td>
+        <td><%= e.produit.source.pays %></td>
+        <td><%= e.produit.prix %></td>
+        <td>
+          
+        </td>
+      </tr>
+    <% end %>
+    
+  </tbody>
+</table>

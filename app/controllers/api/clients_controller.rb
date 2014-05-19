@@ -140,7 +140,7 @@ class Api::ClientsController < ApplicationController
     @client = client
     @produit = produit
     if @client and @produit
-      @achat2 = @client.liste_noire.create(client_id: @client.id, produit_id: @produit.id)
+      @achat2 = @client.liste_favorise.create(client_id: @client.id, produit_id: @produit.id)
       # @achat = @produit.liste_acheter.create(liste_acheter_params)
       @achat2.save
       if @achat2.save
@@ -165,9 +165,41 @@ class Api::ClientsController < ApplicationController
                   :magasin => p.produit.magasin.nom_magasin
                   }}
     render json: results
+  end #end liste favorise
+
+#liste noire
+  def add_liste_favorise
+    @client = client
+    @produit = produit
+    if @client and @produit
+      @achat2 = @client.liste_noire.create(client_id: @client.id, produit_id: @produit.id)
+      # @achat = @produit.liste_acheter.create(liste_acheter_params)
+      @achat2.save
+      if @achat2.save
+         render json: { status: 'Valide', message: "Valide"}
+      else 
+        render json: { status: 'Invalide', message: "Invalide"}
+      end
+    else
+      render json: { status: 'info invalide', message: "info invalide"}
+    end
+  end
+
+  def show_liste_favorise
+    @client = client
+    @listes = ListeNoire.where(client_id: @client.id)
+    results = @listes.map {|p| {
+                  :produit_id => p.produit.id,
+                  :produit_nom => p.produit.nom_produit,
+                  :source => p.produit.source.pays,
+                  :type => p.produit.type_de_produit.type_produit,
+                  :nfc => p.produit.nfc_id,
+                  :magasin => p.produit.magasin.nom_magasin
+                  }}
+    render json: results
   end #end liste noire
 
-
+  
   private
 
   def liste_acheter_params

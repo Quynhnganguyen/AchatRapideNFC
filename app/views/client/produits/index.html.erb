@@ -26,7 +26,9 @@
           <li class = "icon-thumbs-up">
             <%= link_to "Like",  client_client_liste_favorises_path(client_id: @client.id, produit_id: e.id), :method => 'post'%>
           </li> &nbsp;
-          
+          <li class = "icon-thumbs-down">
+            <%= link_to "Unlike",  client_client_liste_noires_path(client_id: @client.id, produit_id: e.id), :method => 'post'%>
+          </li> &nbsp;
         </td>
       </tr>
     <% end %>
