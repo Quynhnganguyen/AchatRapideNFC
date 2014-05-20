@@ -35,6 +35,7 @@ class Api::ClientsController < ApplicationController
     @produits = Produit.where(magasin_id: params[:magasin_id])
     results = @produits.map {|p| {
                   :produit_id => p.id,
+                  :prix => p.prix,
                   :produit_nom => p.nom_produit
                   }}
     render json: results
@@ -44,6 +45,7 @@ class Api::ClientsController < ApplicationController
     @produits = Produit.where(type_de_produit_id: params[:type_de_produit_id])
     results = @produits.map {|p| {
                   :produit_id => p.id,
+                  :prix => p.prix,
                   :produit_nom => p.nom_produit
                   }}
     render json: results
@@ -53,6 +55,7 @@ class Api::ClientsController < ApplicationController
     @produits = Produit.where(source_id: params[:source_id])
     results = @produits.map {|p| {
                   :produit_id => p.id,
+                  :prix => p.prix,
                   :produit_nom => p.nom_produit
                   }}
     render json: results
