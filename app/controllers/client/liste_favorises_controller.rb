@@ -22,6 +22,16 @@ class Client::ListeFavorisesController < ApplicationController
     end
   end
 
+ def destroy
+    @client = client
+    @produit = @client.liste_favorise.find(params[:id])
+    @produit.destroy
+
+    respond_to do |format|
+      format.html { redirect_to client_liste_favorises_index_path }
+      format.json { head :no_content }
+    end
+  end
 
 
 private

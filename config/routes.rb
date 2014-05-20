@@ -5,14 +5,14 @@ Rails.application.routes.draw do
   namespace :client do
   get 'liste_favorises/index'
   resources :client do 
-      resources :liste_favorises, only: [:new, :create]
+      resources :liste_favorises, only: [:new, :create, :destroy]
     end
   end
 
   namespace :client do
   get 'liste_noires/index'
   resources :client do 
-      resources :liste_noires, only: [:new, :create]
+      resources :liste_noires, only: [:new, :create, :destroy]
     end
   end
 
@@ -23,7 +23,7 @@ Rails.application.routes.draw do
     post 'sources/index'
     get 'liste_acheters/index'
     resources :client do 
-      resources :liste_acheters, only: [:new, :create]
+      resources :liste_acheters, only: [:new, :create, :destroy]
     end
   end
 

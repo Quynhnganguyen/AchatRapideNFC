@@ -24,11 +24,11 @@ class Client::ListeAchetersController < ApplicationController
   
 def destroy
    @client = client
-    @type = @context.type_de_produit.find(params[:id])
-    @type.destroy
+    @produit = @client.liste_acheter.find(params[:id])
+    @produit.destroy
 
     respond_to do |format|
-      format.html { redirect_to context_url(context) }
+      format.html { redirect_to client_liste_acheters_index_path }
       format.json { head :no_content }
     end
   end

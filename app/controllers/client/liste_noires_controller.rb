@@ -22,7 +22,16 @@ class Client::ListeNoiresController < ApplicationController
     end
   end
 
+  def destroy
+    @client = client
+    @produit = @client.liste_noire.find(params[:id])
+    @produit.destroy
 
+    respond_to do |format|
+      format.html { redirect_to client_liste_noires_index_path }
+      format.json { head :no_content }
+    end
+  end
 
 private
   def liste_noire_params

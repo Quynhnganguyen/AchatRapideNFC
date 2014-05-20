@@ -20,7 +20,9 @@
         <td><%= e.produit.prix %></td>
         <td><%= e.produit.magasin.nom_magasin %></td>
         <td>
-          
+          <li class = "icon-trash">
+            <%= link_to " Delete", client_client_liste_acheter_path(e.produit_id, e), :method => 'delete'%>
+          </li>
         </td>
       </tr>
     <% end %>
