@@ -13,12 +13,18 @@ class Client::ListeNoiresController < ApplicationController
   def create
     @client = client
     @produit = produit
-    @achat = @client.liste_noire.create(client_id: @client.id, produit_id: @produit.id)
-   @achat.save
-    if @achat.save
-       flash[:notice] =  "produit has been successfully added in liste à noire."
-   else 
-       flash[:notice] =  "erroooooo"
+    @produit_existe = ListeNoire.exists?(produit_id: @produit.id)
+
+    if @produit_existe
+      @message= "Produit existed"
+    else
+      @achat = @client.liste_noire.create(client_id: @client.id, produit_id: @produit.id)
+   	  @achat.save
+      if @achat.save
+         flash[:notice] =  "produit has been successfully added in liste à noire."
+      else 
+     		flash[:notice] =  "erroooooo"
+      end
     end
   end
 
