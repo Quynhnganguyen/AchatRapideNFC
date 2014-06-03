@@ -3,7 +3,6 @@ class AddRefsToProduits < ActiveRecord::Migration
     add_reference :produits, :source, index: true
     add_reference :produits, :type_de_produit, index: true
 
-    add_column :produits, :nombre, :integer
   	add_column :produits, :nfc_id, :string
   end
 end
