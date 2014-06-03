@@ -13,19 +13,12 @@ class Client::ListeAchetersController < ApplicationController
   def create
     @client = client
     @produit = produit
-    @produit_existe = false
-    @produit_existe = ListeAcheter.exists?(produit_id: params[:produit_id])
-
-    if @produit_existe
-      @message= "Produit existed"
-    else
-      @acheter = @client.liste_acheter.create(client_id: @client.id, produit_id: @produit.id)
-      @acheter.save
-      if @acheter.save
-         flash[:notice] =  "produit has been successfully added in liste à acheter."
-      else 
-        flash[:notice] =  "erroooooo"
-    end
+    @achat2 = @client.liste_acheter.create(client_id: @client.id, produit_id: @produit.id)
+    @achat2.save
+        if @achat2.save
+          flash[:notice] =  "produit has been successfully added in liste à acheter."
+        else 
+         flash[:notice] =  "erroooooo"
   end
 end
   

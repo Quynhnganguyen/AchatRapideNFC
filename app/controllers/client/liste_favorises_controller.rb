@@ -13,19 +13,13 @@ class Client::ListeFavorisesController < ApplicationController
   def create
     @client = client
     @produit = produit
-    @produit_exite = ListeFavorise.exists?(produit_id: @produit.id)
-    
-    if @produit_exite
-      @message= "Produit existed"
-    else
-      @favorie = @client.liste_favorise.create(client_id: @client.id, produit_id: @produit.id)
-   	@favorie.save
-      if @favorie.save
-         flash[:notice] =  "produit has been successfully added in liste favoris."
-     	else 
-     		flash[:notice] =  "erroooooo"
+    @favorie = @client.liste_favorise.create(client_id: @client.id, produit_id: @produit.id)
+   @favorie.save
+    if @favorie.save
+       flash[:notice] =  "produit has been successfully added in liste à acheter."
+     else 
+       flash[:notice] =  "erroooooo"
     end
-  end
   end
 
  def destroy
