@@ -13,7 +13,6 @@ class Client::ListeAchetersController < ApplicationController
   def create
     @client = client
     @produit = produit
-    @produit_existe = false
     @produit_existe = ListeAcheter.exists?(produit_id: params[:produit_id])
 
     if @produit_existe

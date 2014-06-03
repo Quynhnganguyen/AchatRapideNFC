@@ -16,7 +16,7 @@ class Client::ListeNoiresController < ApplicationController
     @produit_existe = ListeNoire.exists?(produit_id: @produit.id)
 
     if @produit_existe
-      @message= "Produit existed"
+      @message= "Produit est déjà dans liste noire"
     else
       @achat = @client.liste_noire.create(client_id: @client.id, produit_id: @produit.id)
    	  @achat.save
