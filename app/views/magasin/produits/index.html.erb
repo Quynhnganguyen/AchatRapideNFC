@@ -1,6 +1,6 @@
 
 
-<h1>Les produits de magasin <%= @vendeur.magasin.try(:nom_magasin) %></h1>
+<h1>Liste des produits du magasin <%= @vendeur.magasin.try(:nom_magasin) %></h1>
 <a><%= link_to "Nouveau Produit", new_magasin_magasin_produit_path(@vendeur) %></a>
 <table class="table table-bordered">
   <thead>
