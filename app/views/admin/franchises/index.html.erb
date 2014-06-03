@@ -1,7 +1,5 @@
 
-
-
-<li><%= link_to "Create a new franchise", admin_franchises_new_path %></li>
+<li><%= link_to "Créer une nouvelle franchise", admin_franchises_new_path %></li>
 
 <h1>Franchises</h1>
 <table class="table table-bordered">
@@ -9,7 +7,7 @@
     <tr>
       <th >Nom du Franchise</th>
       <th >Nombre de magasin</th>
-      <th >New magasin</th>
+      <th >Nouveau magasin</th>
     </tr>
   </thead>
   <tbody>
@@ -17,7 +15,7 @@
       <tr>
         <td><%= f.nom_entreprise %></td>
         <td><%= f.magasin.count %></td>
-        <td> <%= link_to "New Magasin", new_admin_franchise_magasin_path(f) %></td>
+        <td> <%= link_to "Nouveau magasin", new_admin_franchise_magasin_path(f) %></td>
       </tr>
     <% end %>
     

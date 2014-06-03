@@ -1,7 +1,6 @@
 
-
-<a><%= link_to "New Source of produit", new_magasin_magasin_source_path(@vendeur) %></a>
-<h1>Sources of produit in magasin <%= @vendeur.magasin.try(:nom_magasin) %></h1>
+<h1>Les sources de produit de magasin <%= @vendeur.magasin.try(:nom_magasin) %></h1>
+<a><%= link_to "Nouvelle source de produit", new_magasin_magasin_source_path(@vendeur) %></a>
 <table class="table table-bordered">
   <thead>
     <tr>

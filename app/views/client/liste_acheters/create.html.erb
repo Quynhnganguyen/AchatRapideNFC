@@ -1,1 +1,6 @@
+<% if @message  %>
+	<h1> <%= @message  %> </h1>
+	<h1> <%= @produit_existe%> </h1>
+	<%else%>
 <h1>Added produit <%= @produit.nom_produit%> in your liste à acheter</h1>
+<% end %>

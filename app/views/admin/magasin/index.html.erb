@@ -7,8 +7,8 @@
       <th >Nom du magasin</th>
       <th >Adresse du magasin</th>
       <th >Franchise</th>
-      <th >Venders</th>
-      <th >New vender</th>
+      <th >Nombre de vendeur</th>
+      <th >Nouveau vendeur</th>
 
   
     </tr>
@@ -20,7 +20,7 @@
         <td><%= m.adresse_magasin %></td>
         <td><%= m.franchise.try(:nom_entreprise) %></td>
         <td><%= m.vendeur.count %></td>
-        <td> <%= link_to "New Vender", new_admin_magasin_vendeur_path(m) %></td>
+        <td> <%= link_to "Nouveau vendeur", new_admin_magasin_vendeur_path(m) %></td>
       </tr>
     <% end %>
     

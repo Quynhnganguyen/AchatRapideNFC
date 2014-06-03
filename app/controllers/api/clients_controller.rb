@@ -17,10 +17,6 @@ class Api::ClientsController < ApplicationController
     render text: 'Logout success'
   end
 
-  # def sign_up
-
-  # end
-
   #api/clients/liste_magasins
   def liste_magasins # liste magasins
     @magasins = Magasin.all
@@ -112,7 +108,11 @@ class Api::ClientsController < ApplicationController
   def add_liste_acheter
     @client = client
     @produit = produit
-    if @client and @produit
+    @produit_exite = ListeAcheter.exists?(produit_id: @produit.id, client_id: @client.id)
+
+    if @produit_exite
+      render json: {message: "Produit est deja dans la liste à acheter"}
+    else
       @achat2 = @client.liste_acheter.create(client_id: @client.id, produit_id: @produit.id)
       # @achat = @produit.liste_acheter.create(liste_acheter_params)
       @achat2.save
